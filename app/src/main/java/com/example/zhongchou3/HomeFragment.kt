@@ -58,8 +58,12 @@ class HomeFragment : Fragment() {
         val mylayoutManager = LinearLayoutManager(view.context)
         mylayoutManager.orientation = LinearLayoutManager.HORIZONTAL
         myrecycleview.layoutManager = mylayoutManager
-        val myadapter = MyAdapter(MyfundList)
+        val myadapter = FundAdapter(MyfundList)
         myrecycleview.adapter = myadapter
+        myadapter.setOnItemClickListener {
+            val intent= Intent(activity,FundDetail::class.java)
+            intent.putExtra("fund", MyfundList.get(it))//强转
+            startActivity(intent) }
         myadapter.notifyDataSetChanged()
 
     }

@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.zhongchou3.Adapter.FundAdapter
+import com.example.zhongchou3.Adapter.MyAdapter
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.fragment_input.*
 import kotlinx.android.synthetic.main.fragment_input.view.*
+import kotlinx.android.synthetic.main.top_mybar.*
 
 
 // TODO: Rename parameter arguments, choose names that match
@@ -25,7 +27,7 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class InputFragment : Fragment() {
-    private val myfundList = ArrayList<Fund>()
+    private val checkfundList = ArrayList<Fund>()
 
     // TODO: Rename and change types of parameters
     private var param1: String? = null
@@ -33,10 +35,7 @@ class InputFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        val view=View.inflate(context,R.layout.fragment_input,null)
-//        input_btn.setOnClickListener {
-//
-//        }
+
 
     }
 
@@ -55,6 +54,22 @@ class InputFragment : Fragment() {
             startActivity(intent)
         }
 
+        initCheckFund()
+        val mylayoutManager = LinearLayoutManager(view.context)
+        mylayoutManager.orientation = LinearLayoutManager.HORIZONTAL
+        myrecycleview.layoutManager = mylayoutManager
+        val myadapter = FundAdapter(checkfundList)
+        myrecycleview.adapter = myadapter
+        myadapter.setOnItemClickListener {
+            val intent= Intent(activity,FundDetail::class.java)
+            intent.putExtra("fund", checkfundList.get(it))//强转
+            startActivity(intent)
+        }
+
+
+    }
+
+    private fun initCheckFund() {
 
     }
 }

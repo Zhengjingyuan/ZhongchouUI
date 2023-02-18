@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
         guanli.setOnClickListener {
-            val intent = Intent(this, GuanliAcitivity::class.java)
+            val intent = Intent(this, GuanliLogin::class.java)
             startActivity(intent)
         }
     }
